@@ -374,6 +374,18 @@
       height: 100%;
     }
 
+    .supply-palette-coins {
+      width: 240px;
+      min-width: 220px;
+    }
+
+    .supply-coin-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      width: 100%;
+    }
+
     .supply-panel-title {
       font-size: 0.9rem;
       font-weight: 800;
@@ -462,23 +474,23 @@
     }
 
     .supply-coin-img.coin-penny {
-      width: 58px;
-      height: 58px;
+      width: 48px;
+      height: 48px;
     }
 
     .supply-coin-img.coin-nickel {
-      width: 64px;
-      height: 64px;
+      width: 54px;
+      height: 54px;
     }
 
     .supply-coin-img.coin-dime {
-      width: 50px;
-      height: 50px;
+      width: 42px;
+      height: 42px;
     }
 
     .supply-coin-img.coin-quarter {
-      width: 72px;
-      height: 72px;
+      width: 60px;
+      height: 60px;
     }
 
     /* -------------------------------------------------------------
@@ -1061,25 +1073,58 @@
       </div>
 
       <!-- Candidate Coins Panel (Right Side) -->
-      <div class="supply-palette">
+      <div class="supply-palette supply-palette-coins">
         <div class="supply-panel-title">Coins Supply 🪙</div>
-        <div class="supply-item" data-spawn-coin="penny" title="Add Penny (1¢)">
-          <img class="supply-coin-img coin-penny" id="supply-img-penny" alt="Penny 1¢">
-          <span class="supply-item-label">Penny (1¢)</span>
+
+        <!-- Penny Pair -->
+        <div class="supply-coin-pair">
+          <div class="supply-item" data-spawn-coin="penny" data-side="heads" title="Add Penny Heads (1¢)">
+            <img class="supply-coin-img coin-penny" id="supply-img-penny-heads" alt="Penny Heads 1¢">
+            <span class="supply-item-label">1¢ Heads</span>
+          </div>
+          <div class="supply-item" data-spawn-coin="penny" data-side="tails" title="Add Penny Tails (1¢)">
+            <img class="supply-coin-img coin-penny" id="supply-img-penny-tails" alt="Penny Tails 1¢">
+            <span class="supply-item-label">1¢ Tails</span>
+          </div>
         </div>
-        <div class="supply-item" data-spawn-coin="nickel" title="Add Nickel (5¢)">
-          <img class="supply-coin-img coin-nickel" id="supply-img-nickel" alt="Nickel 5¢">
-          <span class="supply-item-label">Nickel (5¢)</span>
+
+        <!-- Nickel Pair -->
+        <div class="supply-coin-pair">
+          <div class="supply-item" data-spawn-coin="nickel" data-side="heads" title="Add Nickel Heads (5¢)">
+            <img class="supply-coin-img coin-nickel" id="supply-img-nickel-heads" alt="Nickel Heads 5¢">
+            <span class="supply-item-label">5¢ Heads</span>
+          </div>
+          <div class="supply-item" data-spawn-coin="nickel" data-side="tails" title="Add Nickel Tails (5¢)">
+            <img class="supply-coin-img coin-nickel" id="supply-img-nickel-tails" alt="Nickel Tails 5¢">
+            <span class="supply-item-label">5¢ Tails</span>
+          </div>
         </div>
-        <div class="supply-item" data-spawn-coin="dime" title="Add Dime (10¢)">
-          <img class="supply-coin-img coin-dime" id="supply-img-dime" alt="Dime 10¢">
-          <span class="supply-item-label">Dime (10¢)</span>
+
+        <!-- Dime Pair -->
+        <div class="supply-coin-pair">
+          <div class="supply-item" data-spawn-coin="dime" data-side="heads" title="Add Dime Heads (10¢)">
+            <img class="supply-coin-img coin-dime" id="supply-img-dime-heads" alt="Dime Heads 10¢">
+            <span class="supply-item-label">10¢ Heads</span>
+          </div>
+          <div class="supply-item" data-spawn-coin="dime" data-side="tails" title="Add Dime Tails (10¢)">
+            <img class="supply-coin-img coin-dime" id="supply-img-dime-tails" alt="Dime Tails 10¢">
+            <span class="supply-item-label">10¢ Tails</span>
+          </div>
         </div>
-        <div class="supply-item" data-spawn-coin="quarter" title="Add Quarter (25¢)">
-          <img class="supply-coin-img coin-quarter" id="supply-img-quarter" alt="Quarter 25¢">
-          <span class="supply-item-label">Quarter (25¢)</span>
+
+        <!-- Quarter Pair -->
+        <div class="supply-coin-pair">
+          <div class="supply-item" data-spawn-coin="quarter" data-side="heads" title="Add Quarter Heads (25¢)">
+            <img class="supply-coin-img coin-quarter" id="supply-img-quarter-heads" alt="Quarter Heads 25¢">
+            <span class="supply-item-label">25¢ Heads</span>
+          </div>
+          <div class="supply-item" data-spawn-coin="quarter" data-side="tails" title="Add Quarter Tails (25¢)">
+            <img class="supply-coin-img coin-quarter" id="supply-img-quarter-tails" alt="Quarter Tails 25¢">
+            <span class="supply-item-label">25¢ Tails</span>
+          </div>
         </div>
-        <span class="supply-hint">💡 Drag or Tap coins to add! Tap a dropped coin to flip Heads ↔ Tails.</span>
+
+        <span class="supply-hint">💡 Drag or Tap coins to add! Tap a dropped coin in the bank to flip Heads ↔ Tails.</span>
       </div>
     </div>
 
@@ -1121,6 +1166,14 @@
     /* ========================================================================== */
 
 
+
+    function getPiggyBankImageSrc() {
+      const asset = typeof PIGGY_BANK_ASSET !== 'undefined' && PIGGY_BANK_ASSET.src;
+      if (asset && !asset.includes('PLACEHOLDER_FOR_')) {
+        return asset;
+      }
+      return null;
+    }
 
     function getBaseTenImageSrc(type) {
       const asset = BASE_TEN_ASSETS[type] && BASE_TEN_ASSETS[type].src;
@@ -1413,11 +1466,18 @@
       document.getElementById('supply-img-ten').src = getBaseTenImageSrc('ten');
       document.getElementById('supply-img-one').src = getBaseTenImageSrc('one');
 
-      // Setup Coin Supply Tray Images
-      document.getElementById('supply-img-penny').src = getCoinImageSrc('penny', 'heads');
-      document.getElementById('supply-img-nickel').src = getCoinImageSrc('nickel', 'heads');
-      document.getElementById('supply-img-dime').src = getCoinImageSrc('dime', 'heads');
-      document.getElementById('supply-img-quarter').src = getCoinImageSrc('quarter', 'heads');
+      // Setup Coin Supply Tray Images (Heads & Tails)
+      document.getElementById('supply-img-penny-heads').src = getCoinImageSrc('penny', 'heads');
+      document.getElementById('supply-img-penny-tails').src = getCoinImageSrc('penny', 'tails');
+
+      document.getElementById('supply-img-nickel-heads').src = getCoinImageSrc('nickel', 'heads');
+      document.getElementById('supply-img-nickel-tails').src = getCoinImageSrc('nickel', 'tails');
+
+      document.getElementById('supply-img-dime-heads').src = getCoinImageSrc('dime', 'heads');
+      document.getElementById('supply-img-dime-tails').src = getCoinImageSrc('dime', 'tails');
+
+      document.getElementById('supply-img-quarter-heads').src = getCoinImageSrc('quarter', 'heads');
+      document.getElementById('supply-img-quarter-tails').src = getCoinImageSrc('quarter', 'tails');
 
       setupEventListeners();
       updateUI();
@@ -1478,9 +1538,11 @@
         setupSpawner(el, el.getAttribute('data-spawn'), 'baseten');
       });
 
-      // Supply Spawners (Coins) - Infinite Supply Drag & Tap Spawning
+      // Supply Spawners (Coins) - Infinite Supply Drag & Tap Spawning (Heads & Tails)
       document.querySelectorAll('[data-spawn-coin]').forEach(el => {
-        setupSpawner(el, el.getAttribute('data-spawn-coin'), 'coins');
+        const coinType = el.getAttribute('data-spawn-coin');
+        const coinSide = el.getAttribute('data-side') || 'heads';
+        setupSpawner(el, coinType, 'coins', coinSide);
       });
 
       // Modal Close/Action
@@ -1637,13 +1699,12 @@
       }
     }
             /*=============================================================SPAWNING & DRAG ENGINE (TOUCH & POINTER
-            EVENTS)=============================================================*/ function setupSpawner(element, type,
-      tabCategory) {
+            EVENTS)=============================================================*/ function setupSpawner(element, type, tabCategory, side = 'heads') {
       element.addEventListener('pointerdown', (e) => {
         e.preventDefault();
         sound.playPop();
 
-        const spawned = spawnItem(type, tabCategory, { isClick: true, pointerX: e.clientX, pointerY: e.clientY });
+        const spawned = spawnItem(type, tabCategory, { isClick: true, pointerX: e.clientX, pointerY: e.clientY, side });
         if (spawned && spawned.element) {
           startDragging(spawned.element, e, true);
         }
@@ -1713,7 +1774,7 @@
           y = options.pointerY - rect.top - (size / 2);
         }
 
-        const itemObj = { id, type, side: 'heads', x, y };
+        const itemObj = { id, type, side: options.side || 'heads', x, y };
         state.coinItems.push(itemObj);
 
         const el = createCoinDOMElement(itemObj);
