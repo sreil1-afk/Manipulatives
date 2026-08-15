@@ -853,6 +853,228 @@
       z-index: 999;
     }
 
+    
+    /* -------------------------------------------------------------
+       INTERACTIVE HELP MODAL
+       ------------------------------------------------------------- */
+    .help-modal-card {
+      background: #f8fafc;
+      border-radius: var(--border-radius-lg);
+      max-width: 850px;
+      width: 92%;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+      transform: scale(0.85);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+    }
+
+    .modal-overlay.active .help-modal-card {
+      transform: scale(1);
+    }
+
+    .help-modal-header {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .help-modal-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .help-modal-title h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+
+    .help-modal-icon {
+      font-size: 1.4rem;
+    }
+
+    .help-modal-close {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .help-modal-close:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .help-modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .help-modal-footer {
+      background: white;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: flex-end;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .hero-card {
+      background: white;
+      border-radius: var(--border-radius-md);
+      padding: 20px 24px;
+      border-left: 5px solid #4f46e5;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .section-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .guide-card {
+      background: white;
+      border-radius: var(--border-radius-md);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      background: #e0e7ff;
+      color: #4f46e5;
+    }
+
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+    .badge-green { background: #dcfce7; color: #166534; }
+    .badge-amber { background: #fef3c7; color: #92400e; }
+    .badge-purple { background: #f3e8ff; color: #6b21a8; }
+    .badge-red { background: #fee2e2; color: #991b1b; }
+
+    .feature-content h4 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 3px;
+    }
+
+    .feature-content p, .feature-content ul {
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    .feature-content ul {
+      margin-left: 18px;
+      margin-top: 4px;
+    }
+
+    .tips-box {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border: 2px dashed #60a5fa;
+      border-radius: var(--border-radius-md);
+      padding: 16px 20px;
+      margin-top: 10px;
+    }
+
+    .tips-box h4 {
+      font-family: 'Outfit', sans-serif;
+      color: #1e40af;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .tips-box ul {
+      margin-left: 18px;
+      color: #1e3a8a;
+      font-size: 0.9rem;
+    }
+
+    .tips-box li {
+      margin-bottom: 4px;
+    }
+
     /* Responsive Adjustments */
     @media (max-width: 768px) {
       header {
@@ -949,13 +1171,13 @@
         </svg>
       </button>
 
-      <a href="help.html" class="icon-btn" id="help-toggle" title="User Help Guide" aria-label="User Help Guide">
+      <button class="icon-btn" id="help-toggle" title="User Help Guide" aria-label="User Help Guide">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"></circle>
           <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
           <line x1="12" y1="17" x2="12.01" y2="17"></line>
         </svg>
-      </a>
+      </button>
     </div>
   </header>
 
@@ -1165,6 +1387,183 @@
       <h2 class="modal-title" id="modal-title">Awesome Job!</h2>
       <p class="modal-msg" id="modal-msg">You built the exact target number!</p>
       <button class="btn btn-primary" id="modal-action-btn">Next Challenge 🎲</button>
+    </div>
+  </div>
+  <!-- INTERACTIVE USER HELP GUIDE MODAL -->
+  <div class="modal-overlay" id="help-modal">
+    <div class="help-modal-card">
+      <div class="help-modal-header">
+        <div class="help-modal-title">
+          <span class="help-modal-icon">📚</span>
+          <h2>User Help & Guide</h2>
+        </div>
+        <button class="help-modal-close" id="help-modal-close-btn" title="Close Guide (Esc)">&times;</button>
+      </div>
+
+      <div class="help-modal-body">
+        <div class="hero-card" style="margin-top: 0;">
+          <h3 class="hero-title">👋 Welcome to the Math Lab Guide!</h3>
+          <p class="hero-desc">
+            This interactive educational application helps second-grade students master place value (Base Ten Blocks) and money counting skills (Piggy Bank Coins) through hands-on visual modeling and immediate feedback.
+          </p>
+        </div>
+
+        <div class="section-grid">
+          <!-- BASE TEN BLOCKS -->
+          <div class="guide-card">
+            <div class="card-header">
+              <div class="card-icon">📦</div>
+              <h3 class="card-title">Base Ten Blocks Manipulative</h3>
+            </div>
+            <ul class="feature-list">
+              <li class="feature-item">
+                <span class="badge badge-blue">100 / 10 / 1</span>
+                <div class="feature-content">
+                  <h4>Place Value Chart (Hundreds, Tens, Ones)</h4>
+                  <p>The workspace is split into three columns: <strong>Hundreds (100s)</strong>, <strong>Tens (10s)</strong>, and <strong>Ones (1s)</strong>. Spawning or dragging blocks into any column automatically snaps them into the correct place value.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <span class="badge badge-amber">Supply Panel</span>
+                <div class="feature-content">
+                  <h4>Adding Blocks</h4>
+                  <p>Click or drag <strong>Hundred Flats (100)</strong>, <strong>Ten Rods (10)</strong>, or <strong>One Units (1)</strong> from the right-hand supply panel directly into the workspace.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <span class="badge badge-green">Regrouping</span>
+                <div class="feature-content">
+                  <h4>Exchanging & Regrouping Tools</h4>
+                  <p>Use the place value regrouping action buttons:</p>
+                  <ul>
+                    <li><strong>🔒 Combine 10 Ones to 1 Ten:</strong> Exchanges 10 unit blocks for 1 ten rod (activates when 10+ ones are present).</li>
+                    <li><strong>🔓 Break 1 Ten to 10 Ones:</strong> Decomposes 1 ten rod into 10 individual unit blocks.</li>
+                    <li><strong>🔒 Combine 10 Tens to 1 Hundred:</strong> Exchanges 10 ten rods for 1 hundred flat (activates when 10+ tens are present).</li>
+                    <li><strong>🔓 Break 1 Hundred to 10 Tens:</strong> Decomposes 1 hundred flat into 10 ten rods.</li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- PIGGY BANK COINS -->
+          <div class="guide-card">
+            <div class="card-header">
+              <div class="card-icon">🪙</div>
+              <h3 class="card-title">Piggy Bank Coins Manipulative</h3>
+            </div>
+            <ul class="feature-list">
+              <li class="feature-item">
+                <span class="badge badge-amber">4 Coins</span>
+                <div class="feature-content">
+                  <h4>Coin Denominations (1¢, 5¢, 10¢, 25¢)</h4>
+                  <p>Practice counting real money values using <strong>Pennies (1¢)</strong>, <strong>Nickels (5¢)</strong>, <strong>Dimes (10¢)</strong>, and <strong>Quarters (25¢)</strong>.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <span class="badge badge-purple">Heads & Tails</span>
+                <div class="feature-content">
+                  <h4>Heads & Tails Supply Pairs</h4>
+                  <p>The right-hand supply panel offers both <strong>Heads</strong> and <strong>Tails</strong> options for every coin denomination. Click or drag your choice to drop it into the Piggy Bank.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <span class="badge badge-blue">Interactive Flip</span>
+                <div class="feature-content">
+                  <h4>Flipping Coins in the Bank</h4>
+                  <p>Tap or click any dropped coin inside the Piggy Bank window to flip its face back and forth between <strong>Heads ↔ Tails</strong> with a realistic coin sound effect!</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <span class="badge badge-green">Live Summary</span>
+                <div class="feature-content">
+                  <h4>Coin Count Summary Bar</h4>
+                  <p>The bottom summary bar tracks the exact count of each coin type currently inside the bank.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- MODES & PRACTICE TOOLS -->
+          <div class="guide-card">
+            <div class="card-header">
+              <div class="card-icon">🎯</div>
+              <h3 class="card-title">Modes, Targets & Feedback</h3>
+            </div>
+            <ul class="feature-list">
+              <li class="feature-item">
+                <span class="badge badge-blue">Modes</span>
+                <div class="feature-content">
+                  <h4>Practice Mode vs. Quiz Mode</h4>
+                  <p>Toggle between learning modes in the top navigation bar:</p>
+                  <ul>
+                    <li><strong>Practice Mode:</strong> Freeform building! The live total counter display updates instantly as you place items.</li>
+                    <li><strong>Quiz Mode:</strong> Self-assessment! The live total value is hidden so students can count independently.</li>
+                  </ul>
+                </div>
+              </li>
+              <li class="feature-item">
+                <span class="badge badge-amber">Targets</span>
+                <div class="feature-content">
+                  <h4>Setting Target Numbers</h4>
+                  <p>Use <strong>🎲 Random Target</strong> to generate a new practice goal (1–999 for Base Ten, 1¢–99¢ for Coins), or type a specific number in the input box and click <strong>Set Target</strong>.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <span class="badge badge-green">Feedback</span>
+                <div class="feature-content">
+                  <h4>✨ Check Answer & Confetti</h4>
+                  <p>Click <strong>✨ Check Answer</strong> to evaluate your work. Correct solutions trigger celebratory confetti and sound effects; incorrect attempts show helpful hints indicating how much to add or remove.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- CONTROLS & TRASH -->
+          <div class="guide-card">
+            <div class="card-header">
+              <div class="card-icon">🧹</div>
+              <h3 class="card-title">Workspace Controls & Deletion</h3>
+            </div>
+            <ul class="feature-list">
+              <li class="feature-item">
+                <span class="badge badge-red">Trash Can</span>
+                <div class="feature-content">
+                  <h4>Deleting Items</h4>
+                  <p>Drag any block or coin to the <strong>🗑️ Drag here to delete</strong> trash zone at the bottom-right of the workspace, or hover over an item and click the red <strong>✕</strong> delete button.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <span class="badge badge-amber">Reset Tools</span>
+                <div class="feature-content">
+                  <h4>Clear Board & Reset All</h4>
+                  <p>Use <strong>Clear Board</strong> to empty the current workspace without clearing your target, or click <strong>Reset All</strong> to restore all settings to default.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <span class="badge badge-purple">Audio</span>
+                <div class="feature-content">
+                  <h4>Sound Effects (🔊/🔇)</h4>
+                  <p>Toggle sound effects on or off using the speaker icon in the top-right header.</p>
+                </div>
+              </li>
+            </ul>
+
+            <div class="tips-box">
+              <h4>💡 Handy Tips for Whiteboards & Touchscreens:</h4>
+              <ul>
+                <li><strong>Touchscreen & Touch Board Friendly:</strong> Tapping any candidate item in the right supply panel automatically spawns it directly into the workspace.</li>
+                <li><strong>Infinite Supply:</strong> You can drag as many blocks or coins as needed from the supply panel!</li>
+                <li><strong>Offline Ready:</strong> The app runs 100% offline in any modern web browser without internet connection needed.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="help-modal-footer">
+        <button class="btn btn-primary" id="help-modal-footer-close">Close User Guide</button>
+      </div>
     </div>
   </div>
 
@@ -1471,7 +1870,13 @@
       modalIcon: document.getElementById('modal-icon'),
       modalTitle: document.getElementById('modal-title'),
       modalMsg: document.getElementById('modal-msg'),
-      modalActionBtn: document.getElementById('modal-action-btn')
+      modalActionBtn: document.getElementById('modal-action-btn'),
+
+      // Help Modal
+      helpModal: document.getElementById('help-modal'),
+      helpToggleBtn: document.getElementById('help-toggle'),
+      helpModalCloseBtn: document.getElementById('help-modal-close-btn'),
+      helpModalFooterCloseBtn: document.getElementById('help-modal-footer-close')
     };
 
     /* =============================================================
@@ -1576,6 +1981,37 @@
       });
 
       // Modal Close/Action
+      // Help Modal Listeners
+      function openHelpModal() {
+        sound.playPop();
+        elements.helpModal.classList.add('active');
+      }
+
+      function closeHelpModal() {
+        elements.helpModal.classList.remove('active');
+      }
+
+      elements.helpToggleBtn.addEventListener('click', openHelpModal);
+      elements.helpModalCloseBtn.addEventListener('click', closeHelpModal);
+      elements.helpModalFooterCloseBtn.addEventListener('click', closeHelpModal);
+
+      elements.helpModal.addEventListener('click', (e) => {
+        if (e.target === elements.helpModal) {
+          closeHelpModal();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (elements.helpModal.classList.contains('active')) {
+            closeHelpModal();
+          }
+          if (elements.feedbackModal.classList.contains('active')) {
+            elements.feedbackModal.classList.remove('active');
+          }
+        }
+      });
+
       elements.modalActionBtn.addEventListener('click', () => {
         elements.feedbackModal.classList.remove('active');
         if (state.mode === 'quiz') {
