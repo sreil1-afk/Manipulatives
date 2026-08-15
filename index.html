@@ -701,6 +701,13 @@
       justify-content: center;
     }
 
+    .piggy-custom-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 25px rgba(236, 72, 153, 0.25));
+    }
+
     .piggy-svg-wrapper {
       width: 100%;
       height: 100%;
@@ -1442,6 +1449,7 @@
       btnRegroupOnes: document.getElementById('btn-regroup-ones'),
 
       // Coins
+      piggyContainer: document.querySelector('.piggy-container'),
       piggyDropArea: document.getElementById('piggy-drop-area'),
       countPennies: document.getElementById('count-pennies'),
       countNickels: document.getElementById('count-nickels'),
@@ -1461,6 +1469,19 @@
     INITIALIZATION & TAB SWITCHING
     ============================================================= */
     function init() {
+      // Setup Piggy Bank Image (Swap SVG for Custom Base64 Image if provided)
+      const piggySrc = getPiggyBankImageSrc();
+      if (piggySrc) {
+        const existingSvg = elements.piggyContainer.querySelector('.piggy-svg-wrapper');
+        if (existingSvg) {
+          const imgEl = document.createElement('img');
+          imgEl.className = 'piggy-custom-img';
+          imgEl.src = piggySrc;
+          imgEl.alt = (typeof PIGGY_BANK_ASSET !== 'undefined' && PIGGY_BANK_ASSET.name) ? PIGGY_BANK_ASSET.name : 'Piggy Bank';
+          elements.piggyContainer.insertBefore(imgEl, elements.piggyDropArea);
+          existingSvg.remove();
+        }
+      }
       // Setup Base Ten Supply Tray Images
       document.getElementById('supply-img-hundred').src = getBaseTenImageSrc('hundred');
       document.getElementById('supply-img-ten').src = getBaseTenImageSrc('ten');
