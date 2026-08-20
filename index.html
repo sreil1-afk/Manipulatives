@@ -792,6 +792,8 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
+      padding: 16px 12px;
+      overflow-y: auto;
     }
 
     .modal-overlay.active {
@@ -935,6 +937,205 @@
       display: flex;
       justify-content: flex-end;
       border-top: 1px solid #e2e8f0;
+    }
+
+    /* -------------------------------------------------------------
+       RANDOM TARGET PRESET BUTTONS & TEACHER SETTINGS MODAL
+       ------------------------------------------------------------- */
+    .random-btn-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .btn-random-preset {
+      padding: 8px 12px;
+      font-size: 0.92rem;
+      white-space: nowrap;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-random-preset:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    }
+
+    .teacher-modal-card {
+      background: #ffffff;
+      border-radius: var(--border-radius-lg);
+      max-width: 540px;
+      width: 95%;
+      max-height: calc(100vh - 32px);
+      max-height: calc(100dvh - 32px);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+      transform: scale(0.85);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden;
+      margin: auto;
+    }
+
+    #teacher-pin-view, #teacher-panel-view {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      max-height: 100%;
+      min-height: 0;
+      flex: 1 1 auto;
+      overflow: hidden;
+    }
+
+    .modal-overlay.active .teacher-modal-card {
+      transform: scale(1);
+    }
+
+    .teacher-modal-header {
+      background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+      color: white;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+      flex-shrink: 0;
+    }
+
+    .teacher-modal-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .teacher-modal-title h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    .teacher-modal-body {
+      padding: 16px 20px;
+      overflow-y: auto;
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      background: #f8fafc;
+    }
+
+    /* Custom Vertical Scrollbar for Teacher Settings */
+    .teacher-modal-body::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .teacher-modal-body::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+
+    .teacher-modal-body::-webkit-scrollbar-thumb {
+      background: #94a3b8;
+      border-radius: 4px;
+    }
+
+    .teacher-modal-body::-webkit-scrollbar-thumb:hover {
+      background: #64748b;
+    }
+
+    .setting-group {
+      background: white;
+      border-radius: var(--border-radius-md);
+      padding: 14px 18px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      flex-shrink: 0;
+    }
+
+    .setting-label {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #1e293b;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .setting-desc {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+
+    .setting-options-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .setting-select, .setting-input {
+      padding: 8px 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: 2px solid #cbd5e1;
+      border-radius: var(--border-radius-md);
+      background: white;
+      color: #1e293b;
+      outline: none;
+    }
+
+    .setting-select:focus, .setting-input:focus {
+      border-color: #2563eb;
+    }
+
+    .checkbox-setting {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      user-select: none;
+      margin-bottom: 8px;
+    }
+
+    .checkbox-setting input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #2563eb;
+      cursor: pointer;
+    }
+
+    .pin-input-box {
+      font-size: 1.5rem;
+      letter-spacing: 6px;
+      text-align: center;
+      width: 160px;
+      padding: 8px;
+      font-weight: 800;
+    }
+
+    .pin-error-msg {
+      color: #dc2626;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .teacher-modal-footer {
+      background: white;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #e2e8f0;
+      flex-shrink: 0;
     }
 
     .hero-card {
@@ -1178,6 +1379,13 @@
           <line x1="12" y1="17" x2="12.01" y2="17"></line>
         </svg>
       </button>
+
+      <button class="icon-btn" id="teacher-settings-toggle" title="Teacher Settings & Bounds Lock" aria-label="Teacher Settings">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+      </button>
     </div>
   </header>
 
@@ -1188,7 +1396,11 @@
       <div class="target-input-wrapper">
         <input type="number" id="target-input" class="target-input" placeholder="---" min="0" max="999">
       </div>
-      <button class="btn btn-secondary" id="random-target-btn">🎲 Random</button>
+      <div class="random-btn-group" id="random-btn-group">
+        <button class="btn btn-secondary btn-random-preset" id="random-preset-1" data-tier="1">🎲 1–20</button>
+        <button class="btn btn-secondary btn-random-preset" id="random-preset-2" data-tier="2">🎲 1–130</button>
+        <button class="btn btn-secondary btn-random-preset" id="random-preset-3" data-tier="3">🎲 1–999</button>
+      </div>
       <button class="btn btn-primary" id="set-target-btn">Set Target</button>
     </div>
 
@@ -1505,8 +1717,8 @@
               <li class="feature-item">
                 <span class="badge badge-amber">Targets</span>
                 <div class="feature-content">
-                  <h4>Setting Target Numbers</h4>
-                  <p>Use <strong>🎲 Random Target</strong> to generate a new practice goal (1–999 for Base Ten, 1¢–99¢ for Coins), or type a specific number in the input box and click <strong>Set Target</strong>.</p>
+                  <h4>Setting Target Numbers & Ranges</h4>
+                  <p>Use the 3 <strong>🎲 Random</strong> range buttons (e.g. 1–20, 1–130, 1–999 for Base Ten; 1¢–20¢, 1¢–50¢, 1¢–99¢ for Coins) to generate instant practice goals. Teachers can click <strong>⚙️ Teacher Settings</strong> (Default PIN: <code>1234</code>) to customize upper bounds or lock student target entry.</p>
                 </div>
               </li>
               <li class="feature-item">
@@ -1514,6 +1726,55 @@
                 <div class="feature-content">
                   <h4>✨ Check Answer & Confetti</h4>
                   <p>Click <strong>✨ Check Answer</strong> to evaluate your work. Correct solutions trigger celebratory confetti and sound effects; incorrect attempts show helpful hints indicating how much to add or remove.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- TEACHER SETTINGS & CLASSROOM CONTROLS -->
+          <div class="guide-card" style="grid-column: 1 / -1;">
+            <div class="card-header">
+              <div class="card-icon">⚙️</div>
+              <h3 class="card-title">Teacher Settings & Classroom Controls</h3>
+            </div>
+            <ul class="feature-list">
+              <li class="feature-item">
+                <span class="badge badge-purple">Security</span>
+                <div class="feature-content">
+                  <h4>🔒 PIN Verification & Security</h4>
+                  <p>Access Teacher Settings by clicking the <strong>⚙️ gear icon</strong> in the top header. A security prompt will ask for a 4-digit PIN (<strong>Default PIN: <code>1234</code></strong>). Teachers can change the PIN at any time inside the settings panel.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <span class="badge badge-blue">Bounds</span>
+                <div class="feature-content">
+                  <h4>📦 Custom Upper Limits for Base Ten & Piggy Bank</h4>
+                  <p>Customize the upper range limits for random target generation to match specific grade levels or learning goals:</p>
+                  <ul>
+                    <li><strong>Base Ten Upper Limit:</strong> Choose standard presets (1–20, 1–130, 1–999) or enter a custom maximum target number (e.g. max 50).</li>
+                    <li><strong>Piggy Bank Upper Limit:</strong> Choose standard presets (1¢–20¢, 1¢–50¢, 1¢–99¢) or enter a custom maximum coin value (e.g. max 25¢).</li>
+                  </ul>
+                </div>
+              </li>
+              <li class="feature-item">
+                <span class="badge badge-amber">Presets</span>
+                <div class="feature-content">
+                  <h4>🎲 Range Button Visibility Control</h4>
+                  <p>Toggle individual range buttons (Tier 1, Tier 2, Tier 3) on or off so students only see the difficulty levels suitable for their current lesson.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <span class="badge badge-red">Locking</span>
+                <div class="feature-content">
+                  <h4>🔒 Student Target Input Lock</h4>
+                  <p>Enable <strong>Lock target text box</strong> to prevent students from manually typing arbitrary numbers into the target input. When locked, students must use the teacher-configured 🎲 Random generator buttons.</p>
+                </div>
+              </li>
+              <li class="feature-item">
+                <span class="badge badge-green">Storage</span>
+                <div class="feature-content">
+                  <h4>💾 Automatic Storage & Persistence</h4>
+                  <p>All teacher settings are automatically saved in browser storage (<code>localStorage</code>) and remain active on classroom devices across sessions. Click <strong>Reset Defaults</strong> to restore factory settings at any time.</p>
                 </div>
               </li>
             </ul>
@@ -1564,6 +1825,135 @@
       <div class="help-modal-footer">
         <button class="btn btn-primary" id="help-modal-footer-close">Close User Guide</button>
       </div>
+    </div>
+  </div>
+
+  <!-- TEACHER SETTINGS & CONFIGURATION MODAL -->
+  <div class="modal-overlay" id="teacher-modal">
+    <div class="teacher-modal-card">
+      
+      <!-- VIEW 1: PIN UNLOCK CHALLENGE -->
+      <div id="teacher-pin-view">
+        <div class="teacher-modal-header">
+          <div class="teacher-modal-title">
+            <span>🔒</span>
+            <h2>Teacher Verification</h2>
+          </div>
+          <button class="help-modal-close" id="teacher-pin-close-btn" title="Close">&times;</button>
+        </div>
+        <div class="teacher-modal-body" style="text-align: center; align-items: center;">
+          <p style="font-weight: 600; color: #475569; margin-top: 10px;">
+            Enter your 4-digit Teacher PIN to modify generator bounds and settings.
+          </p>
+          <div style="margin: 15px 0;">
+            <input type="password" id="teacher-pin-input" class="setting-input pin-input-box" placeholder="••••" maxlength="8">
+            <div class="pin-error-msg" id="pin-error-msg">Incorrect PIN. Please try again.</div>
+          </div>
+          <p style="font-size: 0.85rem; color: #94a3b8;">Default PIN: <strong>1234</strong></p>
+        </div>
+        <div class="teacher-modal-footer">
+          <button class="btn btn-secondary" id="teacher-pin-cancel-btn">Cancel</button>
+          <button class="btn btn-primary" id="teacher-pin-submit-btn">Unlock Settings 🔓</button>
+        </div>
+      </div>
+
+      <!-- VIEW 2: TEACHER CONFIGURATION PANEL -->
+      <div id="teacher-panel-view" style="display: none;">
+        <div class="teacher-modal-header">
+          <div class="teacher-modal-title">
+            <span>⚙️</span>
+            <h2>Teacher Settings & Bounds</h2>
+          </div>
+          <button class="help-modal-close" id="teacher-panel-close-btn" title="Close">&times;</button>
+        </div>
+
+        <div class="teacher-modal-body">
+          <!-- BASE TEN MAX BOUND -->
+          <div class="setting-group">
+            <div class="setting-label">
+              <span>📦 Base Ten Upper Limit</span>
+              <span id="label-baseten-max" style="color: #2563eb; font-weight: 800;">999</span>
+            </div>
+            <div class="setting-desc">Set the maximum random target number for Base Ten Blocks.</div>
+            <div class="setting-options-row">
+              <select id="setting-baseten-max" class="setting-select">
+                <option value="20">1 - 20 (Ones & Tens)</option>
+                <option value="130">1 - 130 (Intro Hundreds)</option>
+                <option value="999" selected>1 - 999 (Full Hundreds)</option>
+                <option value="custom">Custom Max Limit...</option>
+              </select>
+              <input type="number" id="setting-baseten-custom" class="setting-input" placeholder="e.g. 50" min="1" max="999" style="width: 100px; display: none;">
+            </div>
+          </div>
+
+          <!-- PIGGY BANK MAX BOUND -->
+          <div class="setting-group">
+            <div class="setting-label">
+              <span>🐷 Piggy Bank Upper Limit</span>
+              <span id="label-coins-max" style="color: #2563eb; font-weight: 800;">99¢</span>
+            </div>
+            <div class="setting-desc">Set the maximum random coin value for Piggy Bank practice.</div>
+            <div class="setting-options-row">
+              <select id="setting-coins-max" class="setting-select">
+                <option value="20">1¢ - 20¢ (Small change)</option>
+                <option value="50">1¢ - 50¢ (Half dollar limit)</option>
+                <option value="99" selected>1¢ - 99¢ (Full dollar limit)</option>
+                <option value="custom">Custom Max Limit...</option>
+              </select>
+              <input type="number" id="setting-coins-custom" class="setting-input" placeholder="e.g. 25" min="1" max="99" style="width: 100px; display: none;">
+            </div>
+          </div>
+
+          <!-- PRESET BUTTON VISIBILITY -->
+          <div class="setting-group">
+            <div class="setting-label">
+              <span>🎲 Visible Random Generator Buttons</span>
+            </div>
+            <div class="setting-desc">Choose which random range buttons students can see in the toolbar.</div>
+            <label class="checkbox-setting">
+              <input type="checkbox" id="setting-show-tier1" checked>
+              <span>Tier 1: Basic Range (1–20 / 1¢–20¢)</span>
+            </label>
+            <label class="checkbox-setting">
+              <input type="checkbox" id="setting-show-tier2" checked>
+              <span>Tier 2: Medium Range (1–130 / 1¢–50¢)</span>
+            </label>
+            <label class="checkbox-setting">
+              <input type="checkbox" id="setting-show-tier3" checked>
+              <span>Tier 3: High Range (1–999 / 1¢–99¢)</span>
+            </label>
+          </div>
+
+          <!-- STUDENT MANUAL INPUT LOCK -->
+          <div class="setting-group">
+            <div class="setting-label">
+              <span>🔒 Student Target Typing Lock</span>
+            </div>
+            <label class="checkbox-setting">
+              <input type="checkbox" id="setting-lock-input">
+              <span>Lock target text box (Students must use 🎲 Random buttons)</span>
+            </label>
+          </div>
+
+          <!-- CHANGE PIN -->
+          <div class="setting-group">
+            <div class="setting-label">
+              <span>🔑 Teacher PIN</span>
+            </div>
+            <div class="setting-desc">Change the PIN required to access this settings menu.</div>
+            <input type="password" id="setting-new-pin" class="setting-input" placeholder="New PIN (min 4 digits)" maxlength="8" style="width: 200px;">
+          </div>
+        </div>
+
+        <div class="teacher-modal-footer">
+          <button class="btn btn-secondary" id="setting-reset-defaults-btn">Reset Defaults</button>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-secondary" id="teacher-panel-cancel-btn">Cancel</button>
+            <button class="btn btn-primary" id="teacher-save-btn">Save Settings 💾</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1813,12 +2203,41 @@
     /* =============================================================
     GLOBAL STATE MANAGER
     ============================================================= */
+    /* =============================================================
+    TEACHER SETTINGS & DEFAULT STATE
+    ============================================================= */
+    const DEFAULT_TEACHER_SETTINGS = {
+      pin: '1234',
+      baseTenMax: 999,
+      coinsMax: 99,
+      showTier1: true,
+      showTier2: true,
+      showTier3: true,
+      lockInput: false
+    };
+
+    function loadTeacherSettings() {
+      try {
+        const stored = localStorage.getItem('manipulatives_teacher_settings');
+        if (stored) {
+          return { ...DEFAULT_TEACHER_SETTINGS, ...JSON.parse(stored) };
+        }
+      } catch (e) {
+        console.error('Failed loading teacher settings:', e);
+      }
+      return { ...DEFAULT_TEACHER_SETTINGS };
+    }
+
+    /* =============================================================
+    GLOBAL STATE MANAGER
+    ============================================================= */
     const state = {
       activeTab: 'baseten', // 'baseten' | 'coins'
       mode: 'practice', // 'practice' | 'quiz'
       target: 0,
       baseTenItems: [], // Array of { id, type: 'hundred'|'ten'|'one', col: 'hundreds'|'tens'|'ones', x, y }
-      coinItems: [] // Array of { id, type: 'penny'|'nickel'|'dime'|'quarter', side: 'heads'|'tails', x, y }
+      coinItems: [], // Array of { id, type: 'penny'|'nickel'|'dime'|'quarter', side: 'heads'|'tails', x, y }
+      teacherSettings: loadTeacherSettings()
     };
 
     let itemIdCounter = 0;
@@ -1835,7 +2254,10 @@
       soundOffIcon: document.getElementById('sound-off-icon'),
       targetTitleLabel: document.getElementById('target-title-label'),
       targetInput: document.getElementById('target-input'),
-      randomTargetBtn: document.getElementById('random-target-btn'),
+      randomPresetGroup: document.getElementById('random-btn-group'),
+      randomPreset1: document.getElementById('random-preset-1'),
+      randomPreset2: document.getElementById('random-preset-2'),
+      randomPreset3: document.getElementById('random-preset-3'),
       setTargetBtn: document.getElementById('set-target-btn'),
       liveCounterCard: document.getElementById('live-counter-card'),
       liveCounterValue: document.getElementById('live-counter-value'),
@@ -1864,7 +2286,7 @@
       countDimes: document.getElementById('count-dimes'),
       countQuarters: document.getElementById('count-quarters'),
 
-      // Trash & Modal
+      // Trash & Feedback Modal
       trashZone: document.getElementById('trash-zone'),
       feedbackModal: document.getElementById('feedback-modal'),
       modalIcon: document.getElementById('modal-icon'),
@@ -1876,7 +2298,34 @@
       helpModal: document.getElementById('help-modal'),
       helpToggleBtn: document.getElementById('help-toggle'),
       helpModalCloseBtn: document.getElementById('help-modal-close-btn'),
-      helpModalFooterCloseBtn: document.getElementById('help-modal-footer-close')
+      helpModalFooterCloseBtn: document.getElementById('help-modal-footer-close'),
+
+      // Teacher Settings Modal
+      teacherSettingsToggle: document.getElementById('teacher-settings-toggle'),
+      teacherModal: document.getElementById('teacher-modal'),
+      teacherPinView: document.getElementById('teacher-pin-view'),
+      teacherPanelView: document.getElementById('teacher-panel-view'),
+      teacherPinInput: document.getElementById('teacher-pin-input'),
+      teacherPinCloseBtn: document.getElementById('teacher-pin-close-btn'),
+      teacherPinCancelBtn: document.getElementById('teacher-pin-cancel-btn'),
+      teacherPinSubmitBtn: document.getElementById('teacher-pin-submit-btn'),
+      teacherPanelCloseBtn: document.getElementById('teacher-panel-close-btn'),
+      teacherPanelCancelBtn: document.getElementById('teacher-panel-cancel-btn'),
+      teacherSaveBtn: document.getElementById('teacher-save-btn'),
+      settingResetDefaultsBtn: document.getElementById('setting-reset-defaults-btn'),
+      pinErrorMsg: document.getElementById('pin-error-msg'),
+
+      labelBaseTenMax: document.getElementById('label-baseten-max'),
+      settingBaseTenMax: document.getElementById('setting-baseten-max'),
+      settingBaseTenCustom: document.getElementById('setting-baseten-custom'),
+      labelCoinsMax: document.getElementById('label-coins-max'),
+      settingCoinsMax: document.getElementById('setting-coins-max'),
+      settingCoinsCustom: document.getElementById('setting-coins-custom'),
+      settingShowTier1: document.getElementById('setting-show-tier1'),
+      settingShowTier2: document.getElementById('setting-show-tier2'),
+      settingShowTier3: document.getElementById('setting-show-tier3'),
+      settingLockInput: document.getElementById('setting-lock-input'),
+      settingNewPin: document.getElementById('setting-new-pin')
     };
 
     /* =============================================================
@@ -1915,8 +2364,41 @@
       document.getElementById('supply-img-quarter-tails').src = getCoinImageSrc('quarter', 'tails');
 
       setupEventListeners();
+      updateRandomGeneratorButtons();
       updateUI();
       setupConfetti();
+    }
+
+    function updateRandomGeneratorButtons() {
+      const ts = state.teacherSettings;
+      const isCoins = state.activeTab === 'coins';
+
+      const max1 = isCoins ? Math.min(20, ts.coinsMax) : Math.min(20, ts.baseTenMax);
+      const max2 = isCoins ? Math.min(50, ts.coinsMax) : Math.min(130, ts.baseTenMax);
+      const max3 = isCoins ? ts.coinsMax : ts.baseTenMax;
+
+      if (elements.randomPreset1) {
+        elements.randomPreset1.style.display = ts.showTier1 ? 'inline-flex' : 'none';
+        elements.randomPreset1.textContent = isCoins ? `🎲 1¢–${max1}¢` : `🎲 1–${max1}`;
+      }
+      if (elements.randomPreset2) {
+        elements.randomPreset2.style.display = ts.showTier2 ? 'inline-flex' : 'none';
+        elements.randomPreset2.textContent = isCoins ? `🎲 1¢–${max2}¢` : `🎲 1–${max2}`;
+      }
+      if (elements.randomPreset3) {
+        elements.randomPreset3.style.display = ts.showTier3 ? 'inline-flex' : 'none';
+        elements.randomPreset3.textContent = isCoins ? `🎲 1¢–${max3}¢` : `🎲 1–${max3}`;
+      }
+
+      if (elements.targetInput) {
+        elements.targetInput.disabled = ts.lockInput;
+        elements.targetInput.title = ts.lockInput ? 'Target input is locked by teacher settings' : '';
+      }
+      if (elements.setTargetBtn) {
+        elements.setTargetBtn.disabled = ts.lockInput;
+        elements.setTargetBtn.style.opacity = ts.lockInput ? '0.5' : '1';
+        elements.setTargetBtn.style.cursor = ts.lockInput ? 'not-allowed' : 'pointer';
+      }
     }
 
     function setupEventListeners() {
@@ -1946,9 +2428,13 @@
         if (sound.enabled) sound.playPop();
       });
 
-      // Target Buttons
-      elements.randomTargetBtn.addEventListener('click', generateRandomTarget);
+      // Target Generator Preset Buttons
+      if (elements.randomPreset1) elements.randomPreset1.addEventListener('click', () => generateRandomTarget(1));
+      if (elements.randomPreset2) elements.randomPreset2.addEventListener('click', () => generateRandomTarget(2));
+      if (elements.randomPreset3) elements.randomPreset3.addEventListener('click', () => generateRandomTarget(3));
+
       elements.setTargetBtn.addEventListener('click', () => {
+        if (state.teacherSettings.lockInput) return;
         const val = parseInt(elements.targetInput.value, 10);
         if (!isNaN(val) && val >= 0) {
           state.target = val;
@@ -1980,7 +2466,6 @@
         setupSpawner(el, coinType, 'coins', coinSide);
       });
 
-      // Modal Close/Action
       // Help Modal Listeners
       function openHelpModal() {
         sound.playPop();
@@ -2001,10 +2486,56 @@
         }
       });
 
+      // Teacher Settings Listeners
+      elements.teacherSettingsToggle.addEventListener('click', openTeacherModal);
+      elements.teacherPinCloseBtn.addEventListener('click', closeTeacherModal);
+      elements.teacherPinCancelBtn.addEventListener('click', closeTeacherModal);
+      elements.teacherPanelCloseBtn.addEventListener('click', closeTeacherModal);
+      elements.teacherPanelCancelBtn.addEventListener('click', closeTeacherModal);
+      elements.teacherPinSubmitBtn.addEventListener('click', verifyTeacherPIN);
+      elements.teacherSaveBtn.addEventListener('click', saveTeacherPanelForm);
+
+      elements.teacherPinInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          verifyTeacherPIN();
+        }
+      });
+
+      elements.settingBaseTenMax.addEventListener('change', () => {
+        const isCustom = elements.settingBaseTenMax.value === 'custom';
+        elements.settingBaseTenCustom.style.display = isCustom ? 'inline-block' : 'none';
+        if (isCustom) elements.settingBaseTenCustom.focus();
+      });
+
+      elements.settingCoinsMax.addEventListener('change', () => {
+        const isCustom = elements.settingCoinsMax.value === 'custom';
+        elements.settingCoinsCustom.style.display = isCustom ? 'inline-block' : 'none';
+        if (isCustom) elements.settingCoinsCustom.focus();
+      });
+
+      elements.settingResetDefaultsBtn.addEventListener('click', () => {
+        state.teacherSettings = { ...DEFAULT_TEACHER_SETTINGS };
+        try {
+          localStorage.removeItem('manipulatives_teacher_settings');
+        } catch (e) {}
+        sound.playSuccess();
+        loadTeacherPanelForm();
+        updateRandomGeneratorButtons();
+      });
+
+      elements.teacherModal.addEventListener('click', (e) => {
+        if (e.target === elements.teacherModal) {
+          closeTeacherModal();
+        }
+      });
+
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           if (elements.helpModal.classList.contains('active')) {
             closeHelpModal();
+          }
+          if (elements.teacherModal.classList.contains('active')) {
+            closeTeacherModal();
           }
           if (elements.feedbackModal.classList.contains('active')) {
             elements.feedbackModal.classList.remove('active');
@@ -2015,10 +2546,114 @@
       elements.modalActionBtn.addEventListener('click', () => {
         elements.feedbackModal.classList.remove('active');
         if (state.mode === 'quiz') {
-          generateRandomTarget();
+          generateRandomTarget(3);
           clearBoard();
         }
       });
+    }
+
+    function openTeacherModal() {
+      sound.playPop();
+      elements.pinErrorMsg.style.display = 'none';
+      elements.teacherPinInput.value = '';
+      elements.teacherPinView.style.display = 'flex';
+      elements.teacherPanelView.style.display = 'none';
+      elements.teacherModal.classList.add('active');
+      setTimeout(() => elements.teacherPinInput.focus(), 100);
+    }
+
+    function closeTeacherModal() {
+      elements.teacherModal.classList.remove('active');
+    }
+
+    function verifyTeacherPIN() {
+      const entered = elements.teacherPinInput.value.trim();
+      if (entered === state.teacherSettings.pin) {
+        sound.playPop();
+        elements.pinErrorMsg.style.display = 'none';
+        elements.teacherPinView.style.display = 'none';
+        elements.teacherPanelView.style.display = 'flex';
+        loadTeacherPanelForm();
+      } else {
+        sound.playRetry();
+        elements.pinErrorMsg.style.display = 'block';
+        elements.teacherPinInput.value = '';
+        elements.teacherPinInput.focus();
+      }
+    }
+
+    function loadTeacherPanelForm() {
+      const ts = state.teacherSettings;
+
+      if ([20, 130, 999].includes(ts.baseTenMax)) {
+        elements.settingBaseTenMax.value = String(ts.baseTenMax);
+        elements.settingBaseTenCustom.style.display = 'none';
+      } else {
+        elements.settingBaseTenMax.value = 'custom';
+        elements.settingBaseTenCustom.value = ts.baseTenMax;
+        elements.settingBaseTenCustom.style.display = 'inline-block';
+      }
+      elements.labelBaseTenMax.textContent = ts.baseTenMax;
+
+      if ([20, 50, 99].includes(ts.coinsMax)) {
+        elements.settingCoinsMax.value = String(ts.coinsMax);
+        elements.settingCoinsCustom.style.display = 'none';
+      } else {
+        elements.settingCoinsMax.value = 'custom';
+        elements.settingCoinsCustom.value = ts.coinsMax;
+        elements.settingCoinsCustom.style.display = 'inline-block';
+      }
+      elements.labelCoinsMax.textContent = ts.coinsMax + '¢';
+
+      elements.settingShowTier1.checked = ts.showTier1;
+      elements.settingShowTier2.checked = ts.showTier2;
+      elements.settingShowTier3.checked = ts.showTier3;
+      elements.settingLockInput.checked = ts.lockInput;
+      elements.settingNewPin.value = '';
+    }
+
+    function saveTeacherPanelForm() {
+      let btMax = 999;
+      if (elements.settingBaseTenMax.value === 'custom') {
+        btMax = parseInt(elements.settingBaseTenCustom.value, 10) || 999;
+      } else {
+        btMax = parseInt(elements.settingBaseTenMax.value, 10);
+      }
+      btMax = Math.max(1, Math.min(999, btMax));
+
+      let cMax = 99;
+      if (elements.settingCoinsMax.value === 'custom') {
+        cMax = parseInt(elements.settingCoinsCustom.value, 10) || 99;
+      } else {
+        cMax = parseInt(elements.settingCoinsMax.value, 10);
+      }
+      cMax = Math.max(1, Math.min(99, cMax));
+
+      let newPin = state.teacherSettings.pin;
+      const pinVal = elements.settingNewPin.value.trim();
+      if (pinVal.length >= 4) {
+        newPin = pinVal;
+      }
+
+      state.teacherSettings = {
+        pin: newPin,
+        baseTenMax: btMax,
+        coinsMax: cMax,
+        showTier1: elements.settingShowTier1.checked,
+        showTier2: elements.settingShowTier2.checked,
+        showTier3: elements.settingShowTier3.checked,
+        lockInput: elements.settingLockInput.checked
+      };
+
+      try {
+        localStorage.setItem('manipulatives_teacher_settings', JSON.stringify(state.teacherSettings));
+      } catch (e) {
+        console.error('Error saving teacher settings:', e);
+      }
+
+      sound.playSuccess();
+      closeTeacherModal();
+      updateRandomGeneratorButtons();
     }
 
     function setActiveTab(tab) {
@@ -2026,14 +2661,14 @@
       elements.tabBtns.forEach(b => b.classList.toggle('active', b.getAttribute('data-tab') === tab));
       elements.tabContents.forEach(c => c.classList.toggle('active', c.id === `tab-${tab}`));
 
-      // Update Target Input Label
       if (tab === 'coins') {
         elements.targetTitleLabel.textContent = 'Target Value (¢):';
-        elements.targetInput.placeholder = '1¢ - 100¢';
+        elements.targetInput.placeholder = `1¢ - ${state.teacherSettings.coinsMax}¢`;
       } else {
         elements.targetTitleLabel.textContent = 'Target Number:';
-        elements.targetInput.placeholder = '1 - 999';
+        elements.targetInput.placeholder = `1 - ${state.teacherSettings.baseTenMax}`;
       }
+      updateRandomGeneratorButtons();
       updateUI();
     }
 
@@ -2043,13 +2678,23 @@
       updateUI();
     }
 
-    function generateRandomTarget() {
+    function generateRandomTarget(tier = 3) {
       sound.playPop();
-      if (state.activeTab === 'baseten') {
-        state.target = Math.floor(Math.random() * 899) + 10;
+      const ts = state.teacherSettings;
+      const isCoins = state.activeTab === 'coins';
+      let maxVal = isCoins ? ts.coinsMax : ts.baseTenMax;
+
+      if (tier === 1) {
+        maxVal = isCoins ? Math.min(20, ts.coinsMax) : Math.min(20, ts.baseTenMax);
+      } else if (tier === 2) {
+        maxVal = isCoins ? Math.min(50, ts.coinsMax) : Math.min(130, ts.baseTenMax);
       } else {
-        state.target = Math.floor(Math.random() * 95) + 5;
+        maxVal = isCoins ? ts.coinsMax : ts.baseTenMax;
       }
+
+      const minVal = 1;
+      maxVal = Math.max(minVal, maxVal);
+      state.target = Math.floor(Math.random() * (maxVal - minVal + 1)) + minVal;
       elements.targetInput.value = state.target;
       updateUI();
     }

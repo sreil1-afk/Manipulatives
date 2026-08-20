@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Help Guide - Interactive Math Manipulatives</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%);
+      --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-radius-sm: 8px;
+      --border-radius-md: 14px;
+      --border-radius-lg: 20px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* -------------------------------------------------------------
+       HEADER
+       ------------------------------------------------------------- */
+    header {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      background: rgba(255, 255, 255, 0.2);
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .nav-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fbbf24;
+      color: #1e293b;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-back-btn:hover {
+      background: #f59e0b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    /* -------------------------------------------------------------
+       MAIN CONTENT CONTAINER
+       ------------------------------------------------------------- */
+    .container {
+      max-width: 1000px;
+      margin: 32px auto;
+      padding: 0 24px;
+      flex: 1;
+    }
+
+    .hero-card {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 32px;
+      border-left: 6px solid #4f46e5;
+    }
+
+    .hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+    }
+
+    /* -------------------------------------------------------------
+       GUIDE SECTIONS & CARDS
+       ------------------------------------------------------------- */
+    .section-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .guide-card {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+      transition: box-shadow 0.2s;
+    }
+
+    .guide-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      background: #e0e7ff;
+      color: #4f46e5;
+    }
+
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+
+    .badge-blue {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .badge-green {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .badge-amber {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .badge-purple {
+      background: #f3e8ff;
+      color: #6b21a8;
+    }
+
+    .badge-red {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .feature-content h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 4px;
+    }
+
+    .feature-content p {
+      font-size: 0.95rem;
+      color: #475569;
+    }
+
+    /* -------------------------------------------------------------
+       TIPS & SHORTCUTS BOX
+       ------------------------------------------------------------- */
+    .tips-box {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border: 2px dashed #60a5fa;
+      border-radius: var(--border-radius-md);
+      padding: 20px 24px;
+      margin-top: 12px;
+    }
+
+    .tips-box h4 {
+      font-family: 'Outfit', sans-serif;
+      color: #1e40af;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tips-box ul {
+      margin-left: 20px;
+      color: #1e3a8a;
+      font-size: 0.95rem;
+    }
+
+    .tips-box li {
+      margin-bottom: 6px;
+    }
+
+    /* -------------------------------------------------------------
+       BOTTOM NAVIGATION BAR
+       ------------------------------------------------------------- */
+    .bottom-nav {
+      margin-top: 40px;
+      margin-bottom: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .bottom-nav .nav-back-btn {
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* -------------------------------------------------------------
+       FOOTER
+       ------------------------------------------------------------- */
+    footer {
+      background: #1e293b;
+      color: #94a3b8;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 14px 18px;
+      }
+
+      .brand-title {
+        font-size: 1.15rem;
+      }
+
+      .container {
+        padding: 0 14px;
+        margin: 18px auto;
+      }
+
+      .hero-card {
+        padding: 20px;
+      }
+
+      .hero-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER NAVIGATION -->
+  <header>
+    <div class="header-brand">
+      <div class="brand-icon">📚</div>
+      <div>
+        <div class="brand-title">User Help & Guide</div>
+        <div class="brand-subtitle">Interactive 2nd-Grade Math Manipulatives</div>
+      </div>
+    </div>
+    <a href="index.html" class="nav-back-btn" title="Return to Main Application">
+      ← Return to Main Page
+    </a>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <div class="container">
+
+    <!-- HERO OVERVIEW -->
+    <div class="hero-card">
+      <h2 class="hero-title">👋 Welcome to the Math Manipulatives Guide!</h2>
+      <p class="hero-desc">
+        This interactive educational application helps second-grade students master place value (Base Ten Blocks) and
+        money counting skills (Piggy Bank Coins) through hands-on visual modeling and immediate feedback.
+      </p>
+    </div>
+
+    <div class="section-grid">
+
+      <!-- SECTION 1: BASE TEN BLOCKS -->
+      <div class="guide-card">
+        <div class="card-header">
+          <div class="card-icon">📦</div>
+          <h3 class="card-title">Base Ten Blocks Manipulative</h3>
+        </div>
+        <ul class="feature-list">
+          <li class="feature-item">
+            <span class="badge badge-blue">100 / 10 / 1</span>
+            <div class="feature-content">
+              <h4>Place Value Chart (Hundreds, Tens, Ones)</h4>
+              <p>The workspace is split into three columns: <strong>Hundreds (100s)</strong>, <strong>Tens
+                  (10s)</strong>, and <strong>Ones (1s)</strong>. Spawning or dragging blocks into any column
+                automatically snaps them into the correct place value.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <span class="badge badge-amber">Supply Panel</span>
+            <div class="feature-content">
+              <h4>Adding Blocks</h4>
+              <p>Click or drag <strong>Hundred Flats (100)</strong>, <strong>Ten Rods (10)</strong>, or <strong>One
+                  Units (1)</strong> from the right-hand supply panel directly into the workspace.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <span class="badge badge-green">Regrouping</span>
+            <div class="feature-content">
+              <h4>Exchanging & Regrouping Tools</h4>
+              <p>Use the place value regrouping action buttons:</p>
+              <ul>
+                <li><strong>🔒 Combine 10 Ones to 1 Ten:</strong> Exchanges 10 unit blocks for 1 ten rod (activates when
+                  10+ ones are present).</li>
+                <li><strong>🔓 Break 1 Ten to 10 Ones:</strong> Decomposes 1 ten rod into 10 individual unit blocks.
+                </li>
+                <li><strong>🔒 Combine 10 Tens to 1 Hundred:</strong> Exchanges 10 ten rods for 1 hundred flat
+                  (activates when 10+ tens are present).</li>
+                <li><strong>🔓 Break 1 Hundred to 10 Tens:</strong> Decomposes 1 hundred flat into 10 ten rods.</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- SECTION 2: PIGGY BANK COINS -->
+      <div class="guide-card">
+        <div class="card-header">
+          <div class="card-icon">🪙</div>
+          <h3 class="card-title">Piggy Bank Coins Manipulative</h3>
+        </div>
+        <ul class="feature-list">
+          <li class="feature-item">
+            <span class="badge badge-amber">4 Coins</span>
+            <div class="feature-content">
+              <h4>Coin Denominations (1¢, 5¢, 10¢, 25¢)</h4>
+              <p>Practice counting real money values using <strong>Pennies (1¢)</strong>, <strong>Nickels (5¢)</strong>,
+                <strong>Dimes (10¢)</strong>, and <strong>Quarters (25¢)</strong>.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <span class="badge badge-purple">Heads & Tails</span>
+            <div class="feature-content">
+              <h4>Heads & Tails Supply Pairs</h4>
+              <p>The right-hand supply panel offers both <strong>Heads</strong> and <strong>Tails</strong> options for
+                every coin denomination. Click or drag your choice to drop it into the Piggy Bank.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <span class="badge badge-blue">Interactive Flip</span>
+            <div class="feature-content">
+              <h4>Flipping Coins in the Bank</h4>
+              <p>Tap or click any dropped coin inside the Piggy Bank window to flip its face back and forth between
+                <strong>Heads ↔ Tails</strong> with a realistic coin sound effect!</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <span class="badge badge-green">Live Summary</span>
+            <div class="feature-content">
+              <h4>Coin Count Summary Bar</h4>
+              <p>The bottom summary bar tracks the exact count of each coin type currently inside the bank.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- SECTION 3: MODES & PRACTICE TOOLS -->
+      <div class="guide-card">
+        <div class="card-header">
+          <div class="card-icon">🎯</div>
+          <h3 class="card-title">Modes, Targets & Feedback</h3>
+        </div>
+        <ul class="feature-list">
+          <li class="feature-item">
+            <span class="badge badge-blue">Modes</span>
+            <div class="feature-content">
+              <h4>Practice Mode vs. Quiz Mode</h4>
+              <p>Toggle between learning modes in the top navigation bar:</p>
+              <ul>
+                <li><strong>Practice Mode:</strong> Freeform building! The live total counter display updates instantly
+                  as you place items.</li>
+                <li><strong>Quiz Mode:</strong> Self-assessment! The live total value is hidden so students can count
+                  independently.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="feature-item">
+            <span class="badge badge-amber">Targets</span>
+            <div class="feature-content">
+              <h4>Setting Target Numbers & Ranges</h4>
+              <p>Use the 3 <strong>🎲 Random</strong> range buttons (e.g. 1–20, 1–130, 1–999 for Base Ten; 1¢–20¢, 1¢–50¢, 1¢–99¢ for Coins) to generate instant practice goals. Teachers can click <strong>⚙️ Teacher Settings</strong> (Default PIN: <code>1234</code>) to customize upper bounds or lock student target entry.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <span class="badge badge-green">Feedback</span>
+            <div class="feature-content">
+              <h4>✨ Check Answer & Confetti</h4>
+              <p>Click <strong>✨ Check Answer</strong> to evaluate your work. Correct solutions trigger celebratory
+                confetti and sound effects; incorrect attempts show helpful hints indicating how much to add or remove.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- SECTION 4: TEACHER SETTINGS & CLASSROOM CONTROLS -->
+      <div class="guide-card" style="grid-column: 1 / -1;">
+        <div class="card-header">
+          <div class="card-icon">⚙️</div>
+          <h3 class="card-title">Teacher Settings & Classroom Controls</h3>
+        </div>
+        <ul class="feature-list">
+          <li class="feature-item">
+            <span class="badge badge-purple">Security</span>
+            <div class="feature-content">
+              <h4>🔒 PIN Verification & Security</h4>
+              <p>Access Teacher Settings by clicking the <strong>⚙️ gear icon</strong> in the top header. A security prompt will ask for a 4-digit PIN (<strong>Default PIN: <code>1234</code></strong>). Teachers can change the PIN at any time inside the settings panel.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <span class="badge badge-blue">Bounds</span>
+            <div class="feature-content">
+              <h4>📦 Custom Upper Limits for Base Ten & Piggy Bank</h4>
+              <p>Customize the upper range limits for random target generation to match specific grade levels or learning goals:</p>
+              <ul>
+                <li><strong>Base Ten Upper Limit:</strong> Choose standard presets (1–20, 1–130, 1–999) or enter a custom maximum target number (e.g. max 50).</li>
+                <li><strong>Piggy Bank Upper Limit:</strong> Choose standard presets (1¢–20¢, 1¢–50¢, 1¢–99¢) or enter a custom maximum coin value (e.g. max 25¢).</li>
+              </ul>
+            </div>
+          </li>
+          <li class="feature-item">
+            <span class="badge badge-amber">Presets</span>
+            <div class="feature-content">
+              <h4>🎲 Range Button Visibility Control</h4>
+              <p>Toggle individual range buttons (Tier 1, Tier 2, Tier 3) on or off so students only see the difficulty levels suitable for their current lesson.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <span class="badge badge-red">Locking</span>
+            <div class="feature-content">
+              <h4>🔒 Student Target Input Lock</h4>
+              <p>Enable <strong>Lock target text box</strong> to prevent students from manually typing arbitrary numbers into the target input. When locked, students must use the teacher-configured 🎲 Random generator buttons.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <span class="badge badge-green">Storage</span>
+            <div class="feature-content">
+              <h4>💾 Automatic Storage & Persistence</h4>
+              <p>All teacher settings are automatically saved in browser storage (<code>localStorage</code>) and remain active on classroom devices across sessions. Click <strong>Reset Defaults</strong> to restore factory settings at any time.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- SECTION 5: CONTROLS & TRASH -->
+      <div class="guide-card">
+        <div class="card-header">
+          <div class="card-icon">🧹</div>
+          <h3 class="card-title">Workspace Controls & Deletion</h3>
+        </div>
+        <ul class="feature-list">
+          <li class="feature-item">
+            <span class="badge badge-red">Trash Can</span>
+            <div class="feature-content">
+              <h4>Deleting Items</h4>
+              <p>Drag any block or coin to the <strong>🗑️ Drag here to delete</strong> trash zone at the bottom-right
+                of the workspace, or hover over an item and click the red <strong>✕</strong> delete button.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <span class="badge badge-amber">Reset Tools</span>
+            <div class="feature-content">
+              <h4>Clear Board & Reset All</h4>
+              <p>Use <strong>Clear Board</strong> to empty the current workspace without clearing your target, or click
+                <strong>Reset All</strong> to restore all settings to default.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <span class="badge badge-purple">Audio</span>
+            <div class="feature-content">
+              <h4>Sound Effects (🔊/🔇)</h4>
+              <p>Toggle sound effects on or off using the speaker icon in the top-right header.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="tips-box">
+          <h4>💡 Handy Tips for Whiteboards & Touchscreens:</h4>
+          <ul>
+            <li><strong>Touchscreen & Touch Board Friendly:</strong> Tapping any candidate item in the right supply
+              panel automatically spawns it directly into the workspace.</li>
+            <li><strong>Infinite Supply:</strong> You can drag as many blocks or coins as needed from the supply panel!
+            </li>
+            <li><strong>Offline Ready:</strong> The app runs 100% offline in any modern web browser without internet
+              connection needed.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM RETURN NAVIGATION -->
+    <div class="bottom-nav">
+      <a href="index.html" class="nav-back-btn" title="Return to Main Application">
+        ← Return to Main Page
+      </a>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Second-Grade Math Manipulatives Educational Software • Self-Contained Offline Web App</p>
+  </footer>
+</body>
+
+</html>
