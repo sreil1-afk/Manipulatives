@@ -317,6 +317,65 @@
       font-feature-settings: "tnum";
     }
 
+    /* Capacity Badge on Live Counter */
+    .capacity-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      margin-left: 4px;
+    }
+
+    .capacity-badge.capacity-warning {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+
+    .capacity-badge.capacity-full {
+      background: rgba(239, 68, 68, 0.25);
+      color: #fca5a5;
+      border-color: rgba(239, 68, 68, 0.5);
+      animation: pulse-full 1.5s infinite alternate;
+    }
+
+    @keyframes pulse-full {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+    /* Floating Toast Notification Banner */
+    .toast-banner {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: #1e293b;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 0 2px #ef4444;
+      font-weight: 700;
+      font-size: 0.95rem;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    }
+
+    .toast-banner.active {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
     .live-counter-card.quiz-hidden {
       visibility: hidden;
       opacity: 0;
@@ -1408,6 +1467,13 @@
     <div class="live-counter-card" id="live-counter-card">
       <span class="counter-label">Current:</span>
       <span class="counter-value" id="live-counter-value">0</span>
+      <span class="capacity-badge" id="capacity-badge" style="display: none;">0/20</span>
+    </div>
+
+    <!-- FLOATING TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-banner" class="toast-banner">
+      <span id="toast-icon">⚠️</span>
+      <span id="toast-message">Notification message</span>
     </div>
 
     <div class="ribbon-actions">
@@ -1749,11 +1815,12 @@
                 <span class="badge badge-blue">Bounds</span>
                 <div class="feature-content">
                   <h4>📦 Custom Upper Limits for Base Ten & Piggy Bank</h4>
-                  <p>Customize the upper range limits for random target generation to match specific grade levels or learning goals:</p>
                   <ul>
-                    <li><strong>Base Ten Upper Limit:</strong> Choose standard presets (1–20, 1–130, 1–999) or enter a custom maximum target number (e.g. max 50).</li>
-                    <li><strong>Piggy Bank Upper Limit:</strong> Choose standard presets (1¢–20¢, 1¢–50¢, 1¢–99¢) or enter a custom maximum coin value (e.g. max 25¢).</li>
-                  </ul>
+                      <li><strong>Base Ten Upper Limit:</strong> Choose standard presets (1–20, 1–130, 1–999) or enter a custom maximum target number (e.g. max 50).</li>
+                      <li><strong>Base Ten Max Block Count:</strong> Limit the total physical blocks allowed on the workspace mat (e.g. max 50 blocks or Unlimited).</li>
+                      <li><strong>Piggy Bank Upper Limit:</strong> Choose standard presets (1¢–20¢, 1¢–50¢, 1¢–99¢) or enter a custom maximum coin value (e.g. max 25¢).</li>
+                      <li><strong>Piggy Bank Max Coin Count:</strong> Limit the total physical coins allowed inside the piggy bank window (e.g. max 20 coins or Unlimited).</li>
+                    </ul>
                 </div>
               </li>
               <li class="feature-item">
@@ -1886,6 +1953,26 @@
             </div>
           </div>
 
+          <!-- BASE TEN MAX ITEM COUNT LIMIT -->
+          <div class="setting-group">
+            <div class="setting-label">
+              <span>🧱 Base Ten Max Block Count</span>
+              <span id="label-baseten-count-max" style="color: #2563eb; font-weight: 800;">50 Blocks</span>
+            </div>
+            <div class="setting-desc">Set the maximum total physical blocks allowed on the Base Ten mat.</div>
+            <div class="setting-options-row">
+              <select id="setting-baseten-count-max" class="setting-select">
+                <option value="20">Max 20 Blocks</option>
+                <option value="30">Max 30 Blocks</option>
+                <option value="50" selected>Max 50 Blocks (Default)</option>
+                <option value="100">Max 100 Blocks</option>
+                <option value="0">Unlimited Blocks</option>
+                <option value="custom">Custom Max Count...</option>
+              </select>
+              <input type="number" id="setting-baseten-count-custom" class="setting-input" placeholder="e.g. 40" min="1" max="200" style="width: 100px; display: none;">
+            </div>
+          </div>
+
           <!-- PIGGY BANK MAX BOUND -->
           <div class="setting-group">
             <div class="setting-label">
@@ -1901,6 +1988,27 @@
                 <option value="custom">Custom Max Limit...</option>
               </select>
               <input type="number" id="setting-coins-custom" class="setting-input" placeholder="e.g. 25" min="1" max="99" style="width: 100px; display: none;">
+            </div>
+          </div>
+
+          <!-- PIGGY BANK MAX ITEM COUNT LIMIT -->
+          <div class="setting-group">
+            <div class="setting-label">
+              <span>🪙 Piggy Bank Max Coin Count</span>
+              <span id="label-coins-count-max" style="color: #2563eb; font-weight: 800;">20 Coins</span>
+            </div>
+            <div class="setting-desc">Set the maximum total physical coins allowed in the Piggy Bank window.</div>
+            <div class="setting-options-row">
+              <select id="setting-coins-count-max" class="setting-select">
+                <option value="10">Max 10 Coins</option>
+                <option value="15">Max 15 Coins</option>
+                <option value="20" selected>Max 20 Coins (Default)</option>
+                <option value="30">Max 30 Coins</option>
+                <option value="50">Max 50 Coins</option>
+                <option value="0">Unlimited Coins</option>
+                <option value="custom">Custom Max Count...</option>
+              </select>
+              <input type="number" id="setting-coins-count-custom" class="setting-input" placeholder="e.g. 25" min="1" max="100" style="width: 100px; display: none;">
             </div>
           </div>
 
@@ -2210,6 +2318,8 @@
       pin: '1234',
       baseTenMax: 999,
       coinsMax: 99,
+      maxCoinsCount: 20,
+      maxBaseTenCount: 50,
       showTier1: true,
       showTier2: true,
       showTier3: true,
@@ -2261,6 +2371,9 @@
       setTargetBtn: document.getElementById('set-target-btn'),
       liveCounterCard: document.getElementById('live-counter-card'),
       liveCounterValue: document.getElementById('live-counter-value'),
+      capacityBadge: document.getElementById('capacity-badge'),
+      toastBanner: document.getElementById('toast-banner'),
+      toastMessage: document.getElementById('toast-message'),
       checkAnswerBtn: document.getElementById('check-answer-btn'),
       clearBoardBtn: document.getElementById('clear-board-btn'),
       resetAllBtn: document.getElementById('reset-all-btn'),
@@ -2318,9 +2431,15 @@
       labelBaseTenMax: document.getElementById('label-baseten-max'),
       settingBaseTenMax: document.getElementById('setting-baseten-max'),
       settingBaseTenCustom: document.getElementById('setting-baseten-custom'),
+      labelBaseTenCountMax: document.getElementById('label-baseten-count-max'),
+      settingBaseTenCountMax: document.getElementById('setting-baseten-count-max'),
+      settingBaseTenCountCustom: document.getElementById('setting-baseten-count-custom'),
       labelCoinsMax: document.getElementById('label-coins-max'),
       settingCoinsMax: document.getElementById('setting-coins-max'),
       settingCoinsCustom: document.getElementById('setting-coins-custom'),
+      labelCoinsCountMax: document.getElementById('label-coins-count-max'),
+      settingCoinsCountMax: document.getElementById('setting-coins-count-max'),
+      settingCoinsCountCustom: document.getElementById('setting-coins-count-custom'),
       settingShowTier1: document.getElementById('setting-show-tier1'),
       settingShowTier2: document.getElementById('setting-show-tier2'),
       settingShowTier3: document.getElementById('setting-show-tier3'),
@@ -2507,10 +2626,22 @@
         if (isCustom) elements.settingBaseTenCustom.focus();
       });
 
+      elements.settingBaseTenCountMax.addEventListener('change', () => {
+        const isCustom = elements.settingBaseTenCountMax.value === 'custom';
+        elements.settingBaseTenCountCustom.style.display = isCustom ? 'inline-block' : 'none';
+        if (isCustom) elements.settingBaseTenCountCustom.focus();
+      });
+
       elements.settingCoinsMax.addEventListener('change', () => {
         const isCustom = elements.settingCoinsMax.value === 'custom';
         elements.settingCoinsCustom.style.display = isCustom ? 'inline-block' : 'none';
         if (isCustom) elements.settingCoinsCustom.focus();
+      });
+
+      elements.settingCoinsCountMax.addEventListener('change', () => {
+        const isCustom = elements.settingCoinsCountMax.value === 'custom';
+        elements.settingCoinsCountCustom.style.display = isCustom ? 'inline-block' : 'none';
+        if (isCustom) elements.settingCoinsCountCustom.focus();
       });
 
       elements.settingResetDefaultsBtn.addEventListener('click', () => {
@@ -2595,6 +2726,17 @@
       }
       elements.labelBaseTenMax.textContent = ts.baseTenMax;
 
+      const btCountMax = ts.maxBaseTenCount !== undefined ? ts.maxBaseTenCount : 50;
+      if ([20, 30, 50, 100, 0].includes(btCountMax)) {
+        elements.settingBaseTenCountMax.value = String(btCountMax);
+        elements.settingBaseTenCountCustom.style.display = 'none';
+      } else {
+        elements.settingBaseTenCountMax.value = 'custom';
+        elements.settingBaseTenCountCustom.value = btCountMax;
+        elements.settingBaseTenCountCustom.style.display = 'inline-block';
+      }
+      elements.labelBaseTenCountMax.textContent = btCountMax === 0 ? 'Unlimited' : `${btCountMax} Blocks`;
+
       if ([20, 50, 99].includes(ts.coinsMax)) {
         elements.settingCoinsMax.value = String(ts.coinsMax);
         elements.settingCoinsCustom.style.display = 'none';
@@ -2604,6 +2746,17 @@
         elements.settingCoinsCustom.style.display = 'inline-block';
       }
       elements.labelCoinsMax.textContent = ts.coinsMax + '¢';
+
+      const cCountMax = ts.maxCoinsCount !== undefined ? ts.maxCoinsCount : 20;
+      if ([10, 15, 20, 30, 50, 0].includes(cCountMax)) {
+        elements.settingCoinsCountMax.value = String(cCountMax);
+        elements.settingCoinsCountCustom.style.display = 'none';
+      } else {
+        elements.settingCoinsCountMax.value = 'custom';
+        elements.settingCoinsCountCustom.value = cCountMax;
+        elements.settingCoinsCountCustom.style.display = 'inline-block';
+      }
+      elements.labelCoinsCountMax.textContent = cCountMax === 0 ? 'Unlimited' : `${cCountMax} Coins`;
 
       elements.settingShowTier1.checked = ts.showTier1;
       elements.settingShowTier2.checked = ts.showTier2;
@@ -2621,6 +2774,14 @@
       }
       btMax = Math.max(1, Math.min(999, btMax));
 
+      let btCountMax = 50;
+      if (elements.settingBaseTenCountMax.value === 'custom') {
+        btCountMax = parseInt(elements.settingBaseTenCountCustom.value, 10) || 50;
+      } else {
+        btCountMax = parseInt(elements.settingBaseTenCountMax.value, 10);
+      }
+      btCountMax = Math.max(0, Math.min(200, btCountMax));
+
       let cMax = 99;
       if (elements.settingCoinsMax.value === 'custom') {
         cMax = parseInt(elements.settingCoinsCustom.value, 10) || 99;
@@ -2628,6 +2789,14 @@
         cMax = parseInt(elements.settingCoinsMax.value, 10);
       }
       cMax = Math.max(1, Math.min(99, cMax));
+
+      let cCountMax = 20;
+      if (elements.settingCoinsCountMax.value === 'custom') {
+        cCountMax = parseInt(elements.settingCoinsCountCustom.value, 10) || 20;
+      } else {
+        cCountMax = parseInt(elements.settingCoinsCountMax.value, 10);
+      }
+      cCountMax = Math.max(0, Math.min(100, cCountMax));
 
       let newPin = state.teacherSettings.pin;
       const pinVal = elements.settingNewPin.value.trim();
@@ -2639,6 +2808,8 @@
         pin: newPin,
         baseTenMax: btMax,
         coinsMax: cMax,
+        maxBaseTenCount: btCountMax,
+        maxCoinsCount: cCountMax,
         showTier1: elements.settingShowTier1.checked,
         showTier2: elements.settingShowTier2.checked,
         showTier3: elements.settingShowTier3.checked,
@@ -2725,6 +2896,23 @@
       return { total, p, n, d, q };
     }
 
+    let toastTimer = null;
+    function showToast(msg, icon = '⚠️') {
+      const banner = elements.toastBanner;
+      const msgEl = elements.toastMessage;
+      const iconEl = document.getElementById('toast-icon');
+      if (!banner || !msgEl) return;
+
+      if (iconEl) iconEl.textContent = icon;
+      msgEl.textContent = msg;
+
+      banner.classList.add('active');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        banner.classList.remove('active');
+      }, 2500);
+    }
+
     function updateUI() {
       // 1. Sync Live Counter - Hidden in Quiz Mode
       if (state.mode === 'quiz') {
@@ -2738,6 +2926,29 @@
           const { total } = calculateCoinsTotal();
           elements.liveCounterValue.textContent = `${total}¢`;
         }
+      }
+
+      // 1b. Sync Capacity Badge
+      const ts = state.teacherSettings;
+      const isCoins = state.activeTab === 'coins';
+      const count = isCoins ? state.coinItems.length : state.baseTenItems.length;
+      const maxCount = isCoins ? (ts.maxCoinsCount !== undefined ? ts.maxCoinsCount : 20) : (ts.maxBaseTenCount !== undefined ? ts.maxBaseTenCount : 50);
+
+      if (maxCount > 0 && state.mode !== 'quiz') {
+        if (elements.capacityBadge) {
+          elements.capacityBadge.style.display = 'inline-block';
+          const labelText = isCoins ? `(${count}/${maxCount} 🪙)` : `(${count}/${maxCount} 📦)`;
+          elements.capacityBadge.textContent = count >= maxCount ? `${labelText} FULL` : labelText;
+
+          elements.capacityBadge.classList.remove('capacity-warning', 'capacity-full');
+          if (count >= maxCount) {
+            elements.capacityBadge.classList.add('capacity-full');
+          } else if (count >= Math.floor(maxCount * 0.8)) {
+            elements.capacityBadge.classList.add('capacity-warning');
+          }
+        }
+      } else {
+        if (elements.capacityBadge) elements.capacityBadge.style.display = 'none';
       }
 
       // 2. Base Ten Badges & Regroup Buttons
@@ -2769,6 +2980,12 @@
     function breakHundredToTens() {
       const idx = state.baseTenItems.findIndex(i => i.type === 'hundred');
       if (idx !== -1) {
+        const maxCount = state.teacherSettings.maxBaseTenCount !== undefined ? state.teacherSettings.maxBaseTenCount : 50;
+        if (maxCount > 0 && (state.baseTenItems.length - 1 + 10) > maxCount) {
+          sound.playRetry();
+          showToast(`Cannot break block: Would exceed block limit of ${maxCount}.`, '⚠️');
+          return;
+        }
         sound.playPop();
         const removed = state.baseTenItems.splice(idx, 1)[0];
         const el = document.getElementById(removed.id);
@@ -2790,6 +3007,12 @@
     } function breakTenToOnes() {
       const idx = state.baseTenItems.findIndex(i => i.type === 'ten');
       if (idx !== -1) {
+        const maxCount = state.teacherSettings.maxBaseTenCount !== undefined ? state.teacherSettings.maxBaseTenCount : 50;
+        if (maxCount > 0 && (state.baseTenItems.length - 1 + 10) > maxCount) {
+          sound.playRetry();
+          showToast(`Cannot break block: Would exceed block limit of ${maxCount}.`, '⚠️');
+          return;
+        }
         sound.playPop();
         const removed = state.baseTenItems.splice(idx, 1)[0];
         const el = document.getElementById(removed.id);
@@ -2824,8 +3047,16 @@
 
     function spawnItem(type, category, options = {}) {
       const id = `item-${++itemIdCounter}`;
+      const ts = state.teacherSettings;
 
       if (category === 'baseten') {
+        const maxCount = ts.maxBaseTenCount !== undefined ? ts.maxBaseTenCount : 50;
+        if (maxCount > 0 && state.baseTenItems.length >= maxCount) {
+          sound.playRetry();
+          showToast(`Base Ten mat limit reached! (Max ${maxCount} blocks)`, '🧱');
+          return null;
+        }
+
         let col = options.col;
         if (!col) {
           if (type === 'hundred') col = 'hundreds';
@@ -2865,6 +3096,13 @@
         return { object: itemObj, element: el };
       }
       else { // Coins (~100px diameter coins)
+        const maxCount = ts.maxCoinsCount !== undefined ? ts.maxCoinsCount : 20;
+        if (maxCount > 0 && state.coinItems.length >= maxCount) {
+          sound.playRetry();
+          showToast(`Piggy Bank is full! (Max ${maxCount} coins)`, '🐷');
+          return null;
+        }
+
         const rect = elements.piggyDropArea.getBoundingClientRect();
         let size = 85;
         if (type === 'penny') size = 85;
